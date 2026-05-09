@@ -14,16 +14,14 @@ class Godot < Formula
     if Hardware::CPU.arm?
       url "https://github.com/godotengine/godot/releases/download/#{version}-stable/Godot_v#{version}-stable_linux.arm64.zip"
       sha256 "c9154154de14acb1f38a6c8618f01f4111ecbd1cdbcecd0a5151be42de2bd1c9"
-      @_bin_name = "Godot_v#{version}-stable_linux.arm64"
-    elsif Hardware::CPU.intel?
+    else
       url "https://github.com/godotengine/godot/releases/download/#{version}-stable/Godot_v#{version}-stable_linux.x86_64.zip"
       sha256 "30e6b6d141f0cd5bebd629ad1d0ef1324e60091bb20662d026b402ba58c59937"
-      @_bin_name = "Godot_v#{version}-stable_linux.x86_64"
     end
   end
 
   def install
-    bin.install @_bin_name => "godot"
+    bin.install Dir["Godot_v*-stable_linux.*"].first => "godot"
   end
 
   test do
