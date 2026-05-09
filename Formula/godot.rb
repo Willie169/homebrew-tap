@@ -10,7 +10,7 @@ class Godot < Formula
     strategy :github_latest
   end
 
-  on_mac do
+  on_macos do
     def install
       odie "This formula is only available on Linux. Use brew install --cask godot for macOS"
     end
