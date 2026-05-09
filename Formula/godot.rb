@@ -4,6 +4,12 @@ class Godot < Formula
   version "4.6.2"
   license "MIT"
 
+  livecheck do
+    url :homepage
+    regex(/v?(\d+(?:\.\d+)+)-stable/i)
+    strategy :github_latest
+  end
+
   on_linux do
     if Hardware::CPU.arm?
       url "https://github.com/godotengine/godot/releases/download/#{version}-stable/Godot_v#{version}-stable_linux.arm64.zip"
@@ -24,11 +30,5 @@ class Godot < Formula
 
   test do
     system "#{bin}/godot", "--version"
-  end
-
-  livecheck do
-    url :homepage
-    regex(/v?(\d+(?:\.\d+)+)-stable/i)
-    strategy :github_latest
   end
 end
