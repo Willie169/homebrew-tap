@@ -19,5 +19,4 @@ jobs:
         uses: Homebrew/actions/bump-packages@master
         with:
           token: ${{ secrets.HOMEBREW_GITHUB_API_TOKEN }}
-          tap: willie169/tap
           formula: godot
