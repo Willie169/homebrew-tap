@@ -1,0 +1,23 @@
+name: livecheck
+
+on:
+  schedule:
+    - cron: '0 8 * * *'
+  workflow_dispatch:
+
+jobs:
+  livecheck:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out tap
+        uses: actions/checkout@v4
+
+      - name: Set up Homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+
+      - name: Run livecheck and bump
+        uses: Homebrew/actions/bump-packages@master
+        with:
+          token: ${{ secrets.HOMEBREW_GITHUB_API_TOKEN }}
+          tap: willie169/tap
+          formula: godot
