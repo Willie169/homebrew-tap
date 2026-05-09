@@ -20,6 +20,8 @@ class Godot < Formula
     end
   end
 
+  depends_on macos: :none
+
   def install
     bin.install Dir["Godot_v*-stable_linux.*"].first => "godot"
   end
