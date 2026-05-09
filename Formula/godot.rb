@@ -10,13 +10,10 @@ class Godot < Formula
     strategy :github_latest
   end
 
-  on_macos do
-    def install
-      odie "This formula is only available on Linux. Use brew install --cask godot for macOS"
-    end
-  end
-
-  on_linux do
+  if OS.mac?
+    url "https://github.com/godotengine/godot/releases/download/#{version}-stable/Godot_v#{version}-stable_macos.universal.zip"
+    sha256 "666b2a64e4b5c59db0e4974605b888eb72eb7d4e60e870d2be6cc19727b50807"
+  elsif OS.linux?
     if Hardware::CPU.arm?
       url "https://github.com/godotengine/godot/releases/download/#{version}-stable/Godot_v#{version}-stable_linux.arm64.zip"
       sha256 "c9154154de14acb1f38a6c8618f01f4111ecbd1cdbcecd0a5151be42de2bd1c9"
@@ -27,6 +24,9 @@ class Godot < Formula
   end
 
   def install
+    if OS.mac?
+      odie "This formula is only available on Linux. Use brew install --cask godot on macOS."
+    end
     bin.install Dir["Godot_v*-stable_linux.*"].first => "godot"
   end
 
