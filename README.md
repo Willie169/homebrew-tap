@@ -1,5 +1,7 @@
 # Willie169 Tap
 
+Unofficial Homebrew tap for latest development tools for Linux.
+
 ## How do I install these formulae?
 
 `brew install willie169/tap/<formula>`
