@@ -5,9 +5,8 @@ class Godot < Formula
   license "MIT"
 
   livecheck do
-    url :homepage
-    regex(/v?(\d+(?:\.\d+)+)-stable/i)
-    strategy :github_latest
+    url "https://github.com/godotengine/godot/releases"
+    regex(/Godot_v?(\d+(?:\.\d+)+)-stable/i)
   end
 
   if OS.mac?
