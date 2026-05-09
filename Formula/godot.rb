@@ -10,6 +10,11 @@ class Godot < Formula
     strategy :github_latest
   end
 
+  on_macos do
+    url "https://github.com/godotengine/godot/releases/download/#{version}-stable/Godot_v#{version}-stable_macos.universal.zip"
+      sha256 "666b2a64e4b5c59db0e4974605b888eb72eb7d4e60e870d2be6cc19727b50807"
+  end
+
   on_linux do
     if Hardware::CPU.arm?
       url "https://github.com/godotengine/godot/releases/download/#{version}-stable/Godot_v#{version}-stable_linux.arm64.zip"
@@ -19,8 +24,6 @@ class Godot < Formula
       sha256 "30e6b6d141f0cd5bebd629ad1d0ef1324e60091bb20662d026b402ba58c59937"
     end
   end
-
-  depends_on macos: :none
 
   def install
     bin.install Dir["Godot_v*-stable_linux.*"].first => "godot"
