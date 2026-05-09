@@ -24,9 +24,7 @@ class Godot < Formula
   end
 
   def install
-    if OS.mac?
-      odie "This formula is only available on Linux. Use brew install --cask godot on macOS."
-    end
+    odie "This formula is only available on Linux. Use brew install --cask godot on macOS." if OS.mac?
     bin.install Dir["Godot_v*-stable_linux.*"].first => "godot"
   end
 
