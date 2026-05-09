@@ -19,9 +19,6 @@ class Godot < Formula
       url "https://github.com/godotengine/godot/releases/download/#{version}-stable/Godot_v#{version}-stable_linux.x86_64.zip"
       sha256 "30e6b6d141f0cd5bebd629ad1d0ef1324e60091bb20662d026b402ba58c59937"
       @_bin_name = "Godot_v#{version}-stable_linux.x86_64"
-    else
-      odie "Unsupported CPU architecture"
-    end
   end
 
   def install
