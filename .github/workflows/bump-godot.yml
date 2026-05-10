@@ -52,12 +52,7 @@ jobs:
           else
             git add "$FORMULA"
             git commit -m "godot ${VERSION}"
-            git push origin HEAD:bump-godot-${VERSION}
-            gh pr create \
-              --title "godot ${VERSION}" \
-              --body "Automated bump to version ${VERSION}" \
-              --base main \
-              --head bump-godot-${VERSION}
+            git push origin HEAD:main
           fi
         env:
           GH_TOKEN: ${{ secrets.HOMEBREW_GITHUB_API_TOKEN }}
