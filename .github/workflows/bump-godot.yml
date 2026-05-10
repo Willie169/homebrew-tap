@@ -29,6 +29,7 @@ jobs:
 
       - name: Update formula
         run: |
+          git remote set-url origin "https://x-access-token:${{ secrets.HOMEBREW_GITHUB_API_TOKEN }}@github.com/${{ github.repository }}.git"
           VERSION="${{ steps.version.outputs.version }}"
           X86_URL="https://github.com/godotengine/godot/releases/download/${VERSION}-stable/Godot_v${VERSION}-stable_linux.x86_64.zip"
           ARM_URL="https://github.com/godotengine/godot/releases/download/${VERSION}-stable/Godot_v${VERSION}-stable_linux.arm64.zip"
