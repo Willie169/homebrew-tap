@@ -1,4 +1,4 @@
-name: livecheck
+name: bump
 
 on:
   schedule:
