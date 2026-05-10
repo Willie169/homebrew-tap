@@ -24,7 +24,7 @@ jobs:
         id: version
         run: |
           LATEST="$(brew livecheck --formula willie169/tap/godot | grep -oP '\d+\.\d+\.\d+' | tail -1)"
-          echo "version=$LATEST" >> $GITHUB_OUTPUT
+          echo "version=$LATEST" >> "$GITHUB_OUTPUT"
           echo "Latest version: $LATEST"
 
       - name: Update formula
@@ -55,4 +55,4 @@ jobs:
             git push origin HEAD:main
           fi
         env:
-          GH_TOKEN: ${{ secrets.HOMEBREW_GITHUB_API_TOKEN }}
+          GH_TOKEN: "${{ secrets.HOMEBREW_GITHUB_API_TOKEN }}"
