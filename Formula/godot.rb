@@ -1,7 +1,7 @@
 class Godot < Formula
   desc "2D and 3D game engine"
   homepage "https://godotengine.org"
-  version "4.6.1"
+  version "4.6.2"
   license "MIT"
 
   livecheck do
@@ -17,8 +17,8 @@ class Godot < Formula
       url "https://github.com/godotengine/godot/releases/download/4.6.1-stable/Godot_v4.6.1-stable_linux.arm64.zip"
       sha256 "4e735876036ff95a9917247ad618328e981e38b91661853a3b7d781171fbf085"
     else
-      url "https://github.com/godotengine/godot/releases/download/4.6.1-stable/Godot_v4.6.1-stable_linux.x86_64.zip"
-      sha256 "cecd0cb6b55e931318a9d7237dc4197d69ea914966787a454808523626e2789f"
+      url "https://github.com/godotengine/godot/releases/download/4.6.2-stable/Godot_v4.6.2-stable_linux.x86_64.zip"
+      sha256 "30e6b6d141f0cd5bebd629ad1d0ef1324e60091bb20662d026b402ba58c59937"
     end
   end
 
