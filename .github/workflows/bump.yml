@@ -9,13 +9,13 @@ jobs:
   livecheck:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out tap
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up Homebrew
+      - name: Setup Homebrew
         uses: Homebrew/actions/setup-homebrew@main
 
-      - name: Run livecheck and bump
+      - name: Bump
         uses: Homebrew/actions/bump-packages@main
         with:
           token: ${{ secrets.HOMEBREW_GITHUB_API_TOKEN }}
