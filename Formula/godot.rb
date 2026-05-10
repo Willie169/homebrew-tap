@@ -1,7 +1,7 @@
 class Godot < Formula
   desc "2D and 3D game engine"
   homepage "https://godotengine.org"
-  version "4.6.2"
+  version "4.6.1"
   license "MIT"
 
   livecheck do
@@ -11,14 +11,14 @@ class Godot < Formula
 
   if OS.mac?
     url "https://github.com/godotengine/godot/releases/download/#{version}-stable/Godot_v#{version}-stable_macos.universal.zip"
-    sha256 "666b2a64e4b5c59db0e4974605b888eb72eb7d4e60e870d2be6cc19727b50807"
+    sha256 "f43613ad72ab1cc9ef14383545f4de344844451a5c9c5f4ea4a923f1f34f91e4"
   elsif OS.linux?
     if Hardware::CPU.arm?
       url "https://github.com/godotengine/godot/releases/download/#{version}-stable/Godot_v#{version}-stable_linux.arm64.zip"
-      sha256 "c9154154de14acb1f38a6c8618f01f4111ecbd1cdbcecd0a5151be42de2bd1c9"
+      sha256 "4e735876036ff95a9917247ad618328e981e38b91661853a3b7d781171fbf085"
     else
       url "https://github.com/godotengine/godot/releases/download/#{version}-stable/Godot_v#{version}-stable_linux.x86_64.zip"
-      sha256 "30e6b6d141f0cd5bebd629ad1d0ef1324e60091bb20662d026b402ba58c59937"
+      sha256 "cecd0cb6b55e931318a9d7237dc4197d69ea914966787a454808523626e2789f"
     end
   end
 
