@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  livecheck:
+  bump:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
