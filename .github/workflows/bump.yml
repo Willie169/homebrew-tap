@@ -25,3 +25,4 @@ jobs:
         with:
           token: ${{ secrets.HOMEBREW_GITHUB_API_TOKEN }}
           formulae: godot
+          fork: false
