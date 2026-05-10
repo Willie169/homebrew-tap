@@ -1,0 +1,62 @@
+name: bump godot
+
+on:
+  schedule:
+    - cron: '0 8 * * *'
+  workflow_dispatch:
+
+jobs:
+  bump-godot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Setup Homebrew
+        uses: Homebrew/actions/setup-homebrew@main
+
+      - name: Get latest version
+        id: version
+        run: |
+          LATEST=$(brew livecheck --formula willie169/tap/godot | grep -oP '\d+\.\d+\.\d+' | tail -1)
+          echo "version=$LATEST" >> $GITHUB_OUTPUT
+          echo "Latest version: $LATEST"
+
+      - name: Update formula
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          X86_URL="https://github.com/godotengine/godot/releases/download/${VERSION}-stable/Godot_v${VERSION}-stable_linux.x86_64.zip"
+          ARM_URL="https://github.com/godotengine/godot/releases/download/${VERSION}-stable/Godot_v${VERSION}-stable_linux.arm64.zip"
+          curl -fsSL -o godot-x86.zip "$X86_URL"
+          X86_SHA256=$(sha256sum godot-x86.zip | cut -d' ' -f1)
+          rm godot-x86.zip
+          curl -fsSL -o godot-arm.zip "$ARM_URL"
+          ARM_SHA256=$(sha256sum godot-arm.zip | cut -d' ' -f1)
+          rm godot-arm.zip
+          echo "x86_64 SHA256: $X86_SHA256"
+          echo "ARM64 SHA256: $ARM_SHA256"
+          FORMULA="Formula/godot.rb"
+          sed -i "s/version \".*\"/version \"${VERSION}\"/" "$FORMULA"
+          sed -i "s|url \".*linux.x86_64.zip\"|url \"${X86_URL}\"|" "$FORMULA"
+          sed -i "s|sha256 \".*\" # x86_64|sha256 \"${X86_SHA256}\" # x86_64|" "$FORMULA"
+          sed -i "s|url \".*linux.arm64.zip\"|url \"${ARM_URL}\"|" "$FORMULA"
+          sed -i "s|sha256 \".*\" # arm64|sha256 \"${ARM_SHA256}\" # arm64|" "$FORMULA"
+          if git diff --quiet; then
+            echo "No changes needed"
+          else
+            git add "$FORMULA"
+            git commit -m "godot ${VERSION}"
+            git push origin HEAD:bump-godot-${VERSION}
+            gh pr create \
+              --title "godot ${VERSION}" \
+              --body "Automated bump to version ${VERSION}" \
+              --base main \
+              --head bump-godot-${VERSION}
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.HOMEBREW_GITHUB_API_TOKEN }}

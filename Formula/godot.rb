@@ -15,10 +15,10 @@ class Godot < Formula
   elsif OS.linux?
     if Hardware::CPU.arm?
       url "https://github.com/godotengine/godot/releases/download/#{version}-stable/Godot_v#{version}-stable_linux.arm64.zip"
-      sha256 "4e735876036ff95a9917247ad618328e981e38b91661853a3b7d781171fbf085"
+      sha256 "4e735876036ff95a9917247ad618328e981e38b91661853a3b7d781171fbf085" #arm64
     else
       url "https://github.com/godotengine/godot/releases/download/#{version}-stable/Godot_v#{version}-stable_linux.x86_64.zip"
-      sha256 "cecd0cb6b55e931318a9d7237dc4197d69ea914966787a454808523626e2789f"
+      sha256 "cecd0cb6b55e931318a9d7237dc4197d69ea914966787a454808523626e2789f" #x86_64
     end
   end
 
